@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"rizkiwhy-todo-app/api/handler"
 	"rizkiwhy-todo-app/api/router"
 	"rizkiwhy-todo-app/database"
@@ -9,10 +10,25 @@ import (
 	"rizkiwhy-todo-app/pkg/user"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
 	app := fiber.New()
+	// Create or open the log file
+	logFile, err := os.OpenFile("fiber.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		panic(err)
+	}
+	defer logFile.Close()
+
+	// Custom logger configuration
+	app.Use(logger.New(logger.Config{
+		Format:   "[${time}] ${ip} ${method} ${status} ${latency}\n",
+		Output:   logFile,
+		TimeZone: "UTC",
+	}))
+
 	api := app.Group("/api")
 
 	db, err := database.MySQLConnection()

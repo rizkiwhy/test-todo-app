@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"rizkiwhy-todo-app/config"
+	"rizkiwhy-todo-app/pkg/todo"
+	"rizkiwhy-todo-app/pkg/user"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -20,6 +22,8 @@ func MySQLConnection() (db *gorm.DB, err error) {
 	if err != nil {
 		log.Fatal("Failed to connect to database. \n", err)
 	}
+
+	db.AutoMigrate(&user.User{}, &todo.Todo{})
 
 	log.Println("database connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
