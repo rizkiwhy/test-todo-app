@@ -2,36 +2,33 @@
 
 ## Overview
 
-This repository contains a Go-based backend service for a dating app. It is containerized using Docker and includes a MySQL database. The service provides RESTful APIs to handle user interactions, relationships, and other core functionalities.
+This repository contains a Go-based backend service for a todo app. It is using a MySQL database. The service provides RESTful APIs to handle user auth, and CRUD todo.
 
 ## Project Structure
 ```
 .
 ├── api
 │   ├── handler
-│   │   ├── order_handler.go
+│   │   ├── todo_handler.go
 │   │   └── user_handler.go
 │   ├── presenter
 │   │   ├── common.go
-│   │   ├── order.go
+│   │   ├── todo.go
 │   │   └── user.go
 │   └── router
-│       ├── order_router.go
+│       ├── todo_router.go
 │       └── user_router.go
 ├── config
 │   └── config.go
 ├── doc
-│   └── thunder-collection_rizkiwhy-dating-app.json
+│   └── 
 ├── middleware
 │   └── auth.go
 ├── pkg
-│   ├── order
+│   ├── todo
 │   │   ├── entity.go
 │   │   ├── repository.go
 │   │   └── service.go
-│   ├── premium_package
-│   ├── relationship_type
-│   ├── swipe_history
 │   └── user
 ├── .gitignore
 ├── go.mod
@@ -48,7 +45,7 @@ This repository contains a Go-based backend service for a dating app. It is cont
 3. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/dating-app-service.git
-cd dating-app-service
+git clone https://github.com/your-username/todo-app-service.git
+cd todo-app-service
 go run main.go
 ```
